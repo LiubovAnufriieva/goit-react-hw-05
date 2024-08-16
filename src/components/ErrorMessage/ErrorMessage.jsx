@@ -1,8 +1,15 @@
-import css from "./ErrorMessage.module.css"
 
-const ErrorMassage = ({message}) => {
-    return (
-        <p className={css.error}>{message}</p>
-    )
+import css from "./ErrorMessage.module.css";
+
+const ErrorMessage = () => {
+  return (
+    <div> 
+        <p className={css.network_error}>
+        Ooops... 
+        Something is wrong, please, reload the page.
+        </p>
+    </div>
+  )
 }
-export default ErrorMassage;
+
+export default ErrorMessage;
