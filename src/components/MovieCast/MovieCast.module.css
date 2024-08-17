@@ -1,0 +1,25 @@
+.cast_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px 0;
+}
+
+.cast_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cast_img {
+    width: 200px;
+    height: 240px;
+    object-fit: cover;
+}
+
+.cast_name {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}

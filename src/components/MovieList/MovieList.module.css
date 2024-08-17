@@ -1,0 +1,12 @@
+.movie_list {
+    color: black;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .movie_list {
+      color: #ffffff;
+    }
+    .movie_list:hover {
+      color: #ffbf47;
+    }
+  }
