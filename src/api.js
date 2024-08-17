@@ -1,37 +1,41 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://api.themoviedb.org/3";
-axios.defaults.headers.common[
-  "Authorization"
-] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjAwYTU3Y2IwMzcyNmQ1ZmZlNDM0MjRkNDUxNzU1YyIsIm5iZiI6MTcyMzkwMzMyNi43MTIxNiwic3ViIjoiNjZiZjMyODA2NjgwOTA0YzFiNDA2MTVhIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.XE_MudfK2BwFB05u_A0KwE9Hv-gWnS8W3qmeyGqtevI`;
-axios.defaults.headers.common["Accept"] = "application/json";
+axios.defaults.baseURL = "https://api.themoviedb.org/3/";
+axios.defaults.headers.common[ "Authorization"] = 
+`Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzBmZmExNDliN2JlZjg1ZWZmYjRkMWNmODliN2VmOCIsInN1YiI6IjY2NzNlMmYzY2U0NzYxZGM3NGFmNGU4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Tpe5TxRzI9mdR-GaRPu_qbv-BLekgP7D-rxF9VA-FHU`;
+// axios.defaults.headers.common["Accept"] = "application/json";
+
 
 export const getTrendingMovies = async () => {
-  const response = await axios.get("/trending/movie/day");
+  const response = await axios.get("trending/movie/week", {
+    params: {
+      language: "en-US",
+    },
+  });
   return response.data;
 };
 
 export const getMovies = async (query) => {
-  const response = await axios.get("/search/movie", {
+  const response = await axios.get('search/movie', {
     params: {
-      query,
+      query: query,
     },
   });
   return response.data;
 };
 
 export const getMovieDetails = async (movieId) => {
-  const response = await axios.get(`/movie/${movieId}`);
+  const response = await axios.get(`movie/${movieId}`);
   return response.data;
 };
 
 export const getMovieCast = async (movieId) => {
-  const response = await axios.get(`/movie/${movieId}/credits`);
+  const response = await axios.get(`movie/${movieId}/credits`);
   return response.data;
 };
 
 export const getMovieReviews = async (movieId) => {
-  const response = await axios.get(`/movie/${movieId}/reviews`);
+  const response = await axios.get(`movie/${movieId}/reviews`);
   return response.data;
 };
 

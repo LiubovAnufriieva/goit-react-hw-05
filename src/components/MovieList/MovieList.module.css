@@ -1,9 +1,20 @@
-.movie_list {
-    color: black;
+.movie_link {
+    color: #4e75ff;
+    cursor: pointer;
+    text-decoration: none;
+    
   }
+  .movie_item {
+    margin-bottom: 8px;
+  }
+  .movie_item:hover {
+    
+    transform: scale(1.2);
+  }
+
   
   @media (prefers-color-scheme: dark) {
-    .movie_list {
+    .movie_link {
       color: #ffffff;
     }
     .movie_list:hover {

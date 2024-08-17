@@ -1,0 +1,12 @@
+.home_container {
+    margin: 0 50px;
+}
+.home_title {
+    font-size: 24px;
+    color: #4e75ff;
+    text-align: center;
+    justify-self: center;
+    padding: 10px 0;
+    border: 1px solid #4e75ff;
+    margin-bottom: 12px;
+}

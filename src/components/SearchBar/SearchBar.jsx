@@ -4,12 +4,12 @@ import css from "./SearchBar.module.css";
 
 const SearchBar = ({ onSearch }) => {
   return (
-    <header>
+    <header className={css.search_bar}>
       <Formik
         initialValues={{ query: "" }}
         onSubmit={(values, actions) => {
           if (values.query.trim() === "") {
-            toast.error('Please enter a keyword of search!');
+            toast.error("Please enter a keyword of search!");
             return;
           }
           onSearch(values.query);

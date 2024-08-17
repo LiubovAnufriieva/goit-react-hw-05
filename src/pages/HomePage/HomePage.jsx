@@ -3,7 +3,7 @@ import { getTrendingMovies } from "../../api";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import MovieList from "../../components/MovieList/MovieList";
-
+import css from "./HomePage.module.css";
 
 const HomePage = () => {
     const [trendingMovies, setTrendingMovies] = useState([]);
@@ -27,8 +27,8 @@ const HomePage = () => {
     }, [setTrendingMovies]);
     
   return (
-    <div>
-        <h1>Trending today</h1>
+    <div className={css.home_container}>
+        <h2  className={css.home_title}>Trending today</h2>
         {isLoading && <Loader />}
         {isError && <ErrorMessage />}
         {trendingMovies.length > 0  && (
