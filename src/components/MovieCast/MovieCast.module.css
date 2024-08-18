@@ -1,25 +1,50 @@
 .cast_list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
 }
 
-.cast_item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+.cast_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cast_card:hover {
+  transform: scale(1.1);
 }
 
 .cast_img {
-    width: 200px;
-    height: 240px;
-    object-fit: cover;
+  width: 200px;
+  height: 240px;
+  object-fit: cover;
 }
 
 .cast_name {
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  padding: 5px;
+}
+
+.no_cast_div {
+  margin: 25px;
+  align-self: center;
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.no_cast_div:hover {
+  transform: scale(1.1);
+}
+.span {
+  font-size: 18px;
+  align-self: center;
 }

@@ -48,7 +48,7 @@ const MoviesPage = () => {
       {isError && <ErrorMessage />}
       {!isLoading && !isError && <MovieList movies={movies} />}
       {isLoading && <Loader />}
-      {notFound && <p className={css.text}>Sorry. Nothing is found with your request ... 😭</p>}
+      {notFound && <p className={css.text}>Sorry 🙅🏻‍♀️ There is no movie matching your request... </p>}
     </div>
   );
 }

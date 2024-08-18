@@ -7,7 +7,7 @@ axios.defaults.headers.common[
 axios.defaults.headers.common["Accept"] = "application/json";
 
 export const getTrendingMovies = async () => {
-  const response = await axios.get("/trending/movie/week", {
+  const response = await axios.get("/trending/movie/day", {
     params: {
       language: "en-US",
     },
@@ -15,27 +15,27 @@ export const getTrendingMovies = async () => {
   return response.data;
 };
 
-export const getMovieById = async (movieId) => {
-  const response = await axios.get(`/movie/${movieId}`);
+export const getMovieById = async (movie_id) => {
+  const response = await axios.get(`/movie/${movie_id}`);
   return response.data;
 };
 
 export const getMovies = async (searchQuery) => {
   const response = await axios.get("/search/movie", {
     params: {
-      query: searchQuery
+      query: searchQuery,
     },
   });
   return response.data;
 };
 
-export const getCastById = async (movieId) => {
-  const response = await axios.get(`/movie/${movieId}/credits`);
+export const getCastById = async (movie_id) => {
+  const response = await axios.get(`/movie/${movie_id}/credits`);
   return response.data;
 };
 
-export const getReviewsById = async (movieId) => {
-  const response = await axios.get(`/movie/${movieId}/reviews`, {
+export const getReviewsById = async (movie_id) => {
+  const response = await axios.get(`/movie/${movie_id}/reviews`, {
     params: {
       language: "en-US",
       page: "1",
@@ -45,4 +45,4 @@ export const getReviewsById = async (movieId) => {
 };
 
 export const defaultImg =
-  "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
+"https://www.petsworld.in/blog/wp-content/uploads/2014/09/cat.jpg";

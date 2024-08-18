@@ -1,5 +1,5 @@
-import { useLocation, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import { getCastById } from  '../../api';
 import { defaultImg } from  '../../api'
@@ -37,7 +37,9 @@ export default function MovieCast() {
   }
 
   if (cast.length === 0) {
-    return <div>We don't have cast for this movie.</div>;
+    return (
+    <div className={css.no_cast_div}>❌ There is cast for this movie. ❌ </div>
+    )
   }
 
   return (
@@ -54,12 +56,14 @@ export default function MovieCast() {
                     ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
                     : defaultImg
                 }
+                // src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
                 width={160}
                 alt="actor"
               />
               <p className={css.cast_name}>{actor.name}</p>
+              <p className={css.span}>as</p>
               <p className={css.cast_name}>
-                as {actor.character}
+                 {actor.character}
               </p>
             </li>
           ))}

@@ -1,10 +1,11 @@
-import { useLocation, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import { getReviewsById } from  '../../api';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 import css from './MovieReviews.module.css';
+import { toast, Toaster } from 'react-hot-toast';
 
 
 const MovieReviews =()=> {
@@ -36,17 +37,21 @@ const MovieReviews =()=> {
   }
 
   if (reviews.length === 0) {
-    return <div>We don't have reviews for this movie.</div>;
+  
+    return (
+    <div className={css.no_review_text}>❌ There is no review for this movie. ❌</div> 
+  )
   }
 
   return (
     <div>
       {isError && <ErrorMessage />}
+     
       <ul className={css.reviews_list}>
         {reviews.map(review => (
           <li key={review.id}>
-            <h3>Author: {review.author}</h3>
-            <p> {review.content}</p>
+            <h3 className={css.review_title}>Author: {review.author}</h3>
+            <p className={css.review_text}> {review.content}</p>
           </li>
         ))}
       </ul>

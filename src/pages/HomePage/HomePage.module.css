@@ -1,17 +1,13 @@
-.home_container { 
-    margin: 0 auto;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
+.home_container {
+  margin: 0 auto;
 }
 
 .home_title {
-    font-size: 24px;
-    color: #4e75ff;
-    text-align: center;
-    justify-self: center;
-    padding: 10px 0;
-    border: 1px solid #4e75ff;
-    margin-bottom: 20px;
+  font-size: 24px;
+  color: #4e75ff;
+  text-align: center;
+  justify-self: center;
+  padding: 10px 0;
+  border: 1px solid #4e75ff;
+  margin-bottom: 20px;
 }
