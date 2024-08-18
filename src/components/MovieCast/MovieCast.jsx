@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { getCastById } from "../../api";
-import { defaultImg } from "../../api";
+import { getCastById, defaultImg  } from "../../api";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loader from "../../components/Loader/Loader";
 import css from "./MovieCast.module.css";
