@@ -1,54 +1,51 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getMovieReviews } from "../../api";
-import Loader from "../../components/Loader/Loader";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import { searchMovies } from "../../api";
+// import Loader from "../../components/Loader/Loader";
+// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import MovieList from "../../components/MovieList/MovieList";
-import css from "./MoviesPage.module.css";
+// import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [isError, setIsError] = useState(false);
+  const query = searchParams.get('query');
   const [searchParams, setSearchParams] = useSearchParams();
-  const [notFound, setNotFound] = useState(false);
+  // const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    const query = searchParams.get("query") ?? "";
-    if (query.trim() === "") {
-      return;
-    }
+    
     async function fetchMovies() {
+
       try {
-        setIsLoading(true);
-        setIsError(false);
-        const data = await getMovieReviews(query);
+        // setIsLoading(true);
+        // setIsError(false);
+        const data = await searchMovies(query);
         setMovies(data.results);
-        setNotFound(data.results.length === 0);
+        // setNotFound(data.results.length === 0);
       } catch (error) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
+        console.log(error);
+      } 
     }
     fetchMovies();
-  }, [searchParams]);
+  }, [query]);
 
-  const handleSubmit = async (value) => {
-    setSearchParams({ query: value });
+ 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const inputValue = form.elements.query.value;
+    setSearchParams({ query: inputValue });
+    form.reset();
   };
+
   return (
     <div>
       <SearchBar onSearch={handleSubmit} />
-      {isError && <ErrorMessage />}
-      {!isLoading && !isError && <MovieList movies={movies} />}
-      {isLoading && <Loader />}
-      {notFound && (
-        <p className={css.text}>
-          Sorry, there is no movie, matching your request...
-        </p>
-      )}
+     
+      {movies.length > 0  && <MovieList movies={movies} />}
     </div>
   );
 };

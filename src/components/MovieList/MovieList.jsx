@@ -6,7 +6,7 @@ const MovieList = ({ movies }) => {
   return (
     <ul>
       {movies.map((movie) => (
-        <li key={movie.id}className={css.movie_item}>
+        <li key={movie.id} className={css.movie_item}>
           <Link to={`/movie/${movie.id}`} state={location} className={css.movie_link}>
             <h3 className={css.title}>{movie.title}</h3>
           </Link>
