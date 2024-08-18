@@ -1,15 +1,17 @@
-import { toast, Toaster } from "react-hot-toast";
-import { Field, Form, Formik } from "formik";
-import css from "./SearchBar.module.css";
+import { toast, Toaster } from 'react-hot-toast';
+import { Field, Form, Formik } from 'formik';
+import css from './SearchBar.module.css';
+import { FaSearch } from "react-icons/fa";
 
-const SearchBar = ({ onSearch }) => {
+
+const SearchBar = ({ onSearch })=> {
   return (
     <header className={css.search_bar}>
       <Formik
-        initialValues={{ query: "" }}
+        initialValues={{ query: '' }}
         onSubmit={(values, actions) => {
-          if (values.query.trim() === "") {
-            toast.error("Please enter a keyword of search!");
+          if (values.query.trim() === '') {
+            toast.error('Please enter the name of the movie!');
             return;
           }
           onSearch(values.query);
@@ -25,13 +27,13 @@ const SearchBar = ({ onSearch }) => {
             autoFocus
           ></Field>
           <button className={css.search_button} type="submit">
-            Search
+          <FaSearch size="28" className={css.search_icon}/>&nbsp;Search
           </button>
-          <Toaster position="top-right" reverseOrder={false} />
+          <Toaster position="top-right"/>
         </Form>
       </Formik>
     </header>
   );
-};
+}
 
 export default SearchBar;

@@ -1,45 +1,53 @@
-import { useEffect, useRef, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { getMovieCast } from "../../api";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import Loader from "../Loader/Loader";
-import css from "./MovieCast.module.css";
-import { defaultImg } from "../../api";
+import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 
-const MovieCast = () => {
+import { getCastById } from  '../../api';
+import { defaultImg } from  '../../api'
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import Loader from '../../components/Loader/Loader';
+import css from './MovieCast.module.css';
+
+
+export default function MovieCast() {
   const { movieId } = useParams();
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = useState(null);
   const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const location = useLocation();
-  const goBack = useRef(location?.state ?? '/movies');
-
+  
   useEffect(() => {
     if (!movieId) return;
 
-    async function fetchCast() {
+    async function fetchCastById() {
       try {
-        setIsLoading(true);
         setIsError(false);
-        const data = await getMovieCast(movieId);
+        const data = await getCastById(movieId);
         setCast(data.cast);
       } catch (error) {
         setIsError(true);
-      } finally {
-        setIsLoading(false);
       }
     }
-    fetchCast();
+    fetchCastById();
   }, [movieId]);
 
+  if (isError) {
+    return <ErrorMessage />;
+  }
+
+  if (!cast) {
+    return <Loader />;
+  }
+
+  if (cast.length === 0) {
+    return <div>We don't have cast for this movie.</div>;
+  }
+
   return (
-  <div>
-    {isError && <ErrorMessage />}
-    {isLoading && <Loader />}
-    <ul className={css.cast_list}>
-      {cast.map(actor => (
-          <li key={actor.id} className={css.cast_item}>
-            <img
+    <div>
+      {isError && <ErrorMessage />}
+      <div>
+        <ul className={css.cast_list}>
+          {cast.map(actor => (
+            <li className={css.cast_card} key={actor.id}>
+              <img
                 className={css.cast_img}
                 src={
                   actor.profile_path
@@ -49,12 +57,14 @@ const MovieCast = () => {
                 width={160}
                 alt="actor"
               />
-              <p className={css.cast_name}>{actor.name} as {actor.character}</p>
-          </li>
-      ))}
-    </ul>
-  </div>
-  )
-};
-
-export default MovieCast;
+              <p className={css.cast_name}>{actor.name}</p>
+              <p className={css.cast_name}>
+                as {actor.character}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}

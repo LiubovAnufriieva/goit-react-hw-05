@@ -1,6 +1,11 @@
-.home_container {
-    margin: 0 50px;
+.home_container { 
+    margin: 0 auto;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
 }
+
 .home_title {
     font-size: 24px;
     color: #4e75ff;
@@ -8,5 +13,5 @@
     justify-self: center;
     padding: 10px 0;
     border: 1px solid #4e75ff;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
 }

@@ -1,10 +1,13 @@
-import { useParams } from "react-router-dom";
-import css from "./MovieReviews.module.css";
-import { useEffect, useState } from "react";
-import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
-import { getMovieReviews } from "../../api";
+import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 
-const MovieReviews = () => {
+import { getReviewsById } from  '../../api';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import Loader from '../../components/Loader/Loader';
+import css from './MovieReviews.module.css';
+
+
+const MovieReviews =()=> {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
   const [isError, setIsError] = useState(false);
@@ -12,31 +15,44 @@ const MovieReviews = () => {
   useEffect(() => {
     if (!movieId) return;
 
-    async function fetchReviews() {
+    async function fetchReviewsById() {
       try {
         setIsError(false);
-        const data = await getMovieReviews(movieId);
+        const data = await getReviewsById(movieId);
         setReviews(data.results);
       } catch (error) {
         setIsError(true);
       }
     }
-    fetchReviews();
+    fetchReviewsById();
   }, [movieId]);
+
+  if (isError) {
+    return <ErrorMessage />;
+  }
+
+  if (reviews === null) {
+    return <Loader />;
+  }
+
+  if (reviews.length === 0) {
+    return <div>We don't have reviews for this movie.</div>;
+  }
 
   return (
     <div>
       {isError && <ErrorMessage />}
       <ul className={css.reviews_list}>
-        {reviews.map((review) => (
+        {reviews.map(review => (
           <li key={review.id}>
             <h3>Author: {review.author}</h3>
-            <p>{review.content}</p>
+            <p> {review.content}</p>
           </li>
         ))}
       </ul>
     </div>
   );
-};
+}
 
 export default MovieReviews;
+
