@@ -1,3 +1,10 @@
+.reviews_div {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 25px 0;
+  text-wrap: wrap;
+}
+
 .reviews_list {
   display: flex;
   flex-direction: column;
@@ -5,12 +12,11 @@
   margin: 15px 70px;
 }
 
-.review_title {
+.reviews_title {
   margin-bottom: 10px;
 }
-
-.review_text {
-  width: 1240px;
+.reviews_text {
+  width: 1000px;
 }
 .no_review_text {
   margin: 25px;

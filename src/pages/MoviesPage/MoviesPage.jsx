@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-import { getMovies } from  '../../api';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import MovieList from '../../components/MovieList/MovieList';
-import Loader from '../../components/Loader/Loader';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import css from './MoviesPage.module.css';
-
+import { getMovies } from "../../api";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import MovieList from "../../components/MovieList/MovieList";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -17,8 +16,8 @@ const MoviesPage = () => {
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    const query = searchParams.get('query') ?? '';
-    if (query.trim() === '') {
+    const query = searchParams.get("query") ?? "";
+    if (query.trim() === "") {
       return;
     }
     async function fetchMovies() {
@@ -38,7 +37,7 @@ const MoviesPage = () => {
     fetchMovies();
   }, [searchParams]);
 
-  const handleSubmit = async value => {
+  const handleSubmit = async (value) => {
     setSearchParams({ query: value });
   };
 
@@ -48,9 +47,13 @@ const MoviesPage = () => {
       {isError && <ErrorMessage />}
       {!isLoading && !isError && <MovieList movies={movies} />}
       {isLoading && <Loader />}
-      {notFound && <p className={css.text}>Sorry 🙅🏻‍♀️ There is no movie matching your request... </p>}
+      {notFound && (
+        <p className={css.text}>
+          Sorry 🙅🏻‍♀️ There is no movie matching your request...{" "}
+        </p>
+      )}
     </div>
   );
-}
+};
 
 export default MoviesPage;

@@ -45,4 +45,4 @@ export const getReviewsById = async (movie_id) => {
 };
 
 export const defaultImg =
-"https://www.petsworld.in/blog/wp-content/uploads/2014/09/cat.jpg";
+  "https://www.petsworld.in/blog/wp-content/uploads/2014/09/cat.jpg";

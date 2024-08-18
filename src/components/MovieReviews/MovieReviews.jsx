@@ -1,14 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-import { getReviewsById } from  '../../api';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import Loader from '../../components/Loader/Loader';
-import css from './MovieReviews.module.css';
-import { toast, Toaster } from 'react-hot-toast';
+import { getReviewsById } from "../../api";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Loader from "../../components/Loader/Loader";
+import css from "./MovieReviews.module.css";
 
-
-const MovieReviews =()=> {
+const MovieReviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
   const [isError, setIsError] = useState(false);
@@ -37,27 +35,27 @@ const MovieReviews =()=> {
   }
 
   if (reviews.length === 0) {
-  
     return (
-    <div className={css.no_review_text}>❌ There is no review for this movie. ❌</div> 
-  )
+      <div className={css.no_review_text}>
+        ❌ There is no review for this movie. ❌
+      </div>
+    );
   }
 
   return (
-    <div>
+    <div className={css.reviews_div}>
       {isError && <ErrorMessage />}
-     
+
       <ul className={css.reviews_list}>
-        {reviews.map(review => (
-          <li key={review.id}>
-            <h3 className={css.review_title}>Author: {review.author}</h3>
-            <p className={css.review_text}> {review.content}</p>
+        {reviews.map((review) => (
+          <li key={review.id} className={css.reviews_item}>
+            <h3 className={css.reviews_title}>Author: {review.author}</h3>
+            <p className={css.reviews_text}> {review.content}</p>
           </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default MovieReviews;
-
