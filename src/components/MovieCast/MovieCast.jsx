@@ -37,7 +37,7 @@ export default function MovieCast() {
   if (cast.length === 0) {
     return (
       <div className={css.no_cast_div}>
-        ❌ There is cast for this movie. ❌{" "}
+        ❌ There is no cast for this movie. ❌{" "}
       </div>
     );
   }
