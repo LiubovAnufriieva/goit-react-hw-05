@@ -17,7 +17,6 @@
   border: 1px solid black;
   border-radius: 8px;
   overflow: hidden;
-
 }
 
 .cast_card:hover {
@@ -41,7 +40,7 @@
   font-size: 14px;
   text-align: center;
   padding: 5px;
-  text-wrap: wrap;
+  word-wrap:break-word;
 }
 
 .no_cast_div {
