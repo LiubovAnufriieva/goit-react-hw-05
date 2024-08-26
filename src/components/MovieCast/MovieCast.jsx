@@ -17,8 +17,9 @@ export default function MovieCast() {
     async function fetchCastById() {
       try {
         setIsError(false);
-        const data = await getCastById(movieId);
-        setCast(data.cast);
+        const response = await getCastById(movieId);
+        setCast(response.cast);
+        console.log(response.cast);
       } catch (error) {
         setIsError(true);
       }
@@ -49,6 +50,7 @@ export default function MovieCast() {
         <ul className={css.cast_list}>
           {cast.map((actor) => (
             <li className={css.cast_card} key={actor.id}>
+
               <img
                 className={css.cast_img}
                 src={
